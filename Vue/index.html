@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn-Vue.js</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+<div id="abdo">
+    <h1> welcome to world</h1>
+    <p>wlcome {{name.length > 4 ? 'mr ' + name : 'Name is to short '}} we are happy to see you</p>
+    <p>your Age is: {{ age + 'years'}}</p>
+    <p>your skills is : {{skills[0]}}</p>
+    <p>you are {{ isSubscribed ? 'Sub' : 'Notsub' }}</p>
+    <p>your  {{completedtests[0].testname }}  {{completedtests[0].testresult }}</p>
+    <p>your  {{completedtests[1].testname }}  {{completedtests[1].testresult }}</p>
+    <p>your  {{completedtests[2].testname }}  {{completedtests[2].testresult }}</p>
+    <p>{{yourageindays()}}</p>
+    <p>{{date}}</p>
+
+    <p v-if="age >50">you are too old</p>
+    <p v-else-if="age >15 && age < 40"> you are not old</p>
+    <p v-else>you are young</p>
+
+    <p v-text="name2 ?  'your name is set' : 'your name is not set ' "></p>
+    <b v-html="title"></b>
+<button @click="showNewDate">Show New Date</button>
+
+<ul>
+    <li v-for="(skill, index) in skills">
+       {{index}}  =====> {{skill}}
+    </li>
+    <li v-for="(test,index) in completedtests">
+    {{index}} =====>   {{test.testname}}   |   {{test.testresult}}
+    </li>
+</ul>
+
+<p v-once="name">v-once===> {{name}}</p>
+<p v-show="age">v-show====>{{age}}</p>
+<a v-bind:href="imageUrl">
+    <img v-bind:src="imageSrc" v-bind:alt="imageAltText">
+</a>
+<h3>{{counter}}</h3>
+<button @click="counter++">  counter plus 1</button>
+<button v-on:click="counter+=2"> counter plus 2</button>
+</div>
+</div>
+
+
+
+
+
+
+
+
+    <script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#abdo',
+            data:{
+                name:'Arafat',
+                name2: true,
+                title: '<div class = "rank">Noob</div>',
+                age: 60,
+                date: 'today',
+                skills: ['Html', 'css','js'],
+                isSubscribed: false,
+                completedtests:[
+                    {
+                        testname: 'first test',
+                        testresult: '86%'
+                    },
+                    {
+                        testname: 'second test',
+                        testresult: '70%'
+                    },
+                    {
+                        testname: 'third test',
+                        testresult: '90%'
+                    },
+                ],
+                imageSrc:'img/01.png',
+                imageAltText: 'The Alternate Text',
+                imageUrl:'https://www.google.com/',
+                
+                counter:0,
+
+        
+
+            },
+
+            methods:{
+                yourageindays: function (){
+                    return 'your age i day is :' + this.age *365;
+                },
+                showNewDate: function(){
+                    this.date=Date();
+                }
+
+            }
+
+
+        })
+        
+    </script>
+    
+</body>
+</html>
